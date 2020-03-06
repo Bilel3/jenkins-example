@@ -1,32 +1,35 @@
 pipeline {
-    agent any
+   agent any
 
-    stages {
-        stage ('Compile Stage') {
+   tools {
+      maven "maven"
+   }
 
-            steps {
-                withMaven(maven : 'maven_3_9_3') {
-                    sh 'mvn clean compile'
-                }
+   stages {
+      stage('Build') {
+         steps {
+            // Get some code from a GitHub repository
+            git 'https://github.com/Bilel3/jenkins-example.git'
+
+            // Run Maven on a Unix agent.
+            sh "mvn -Dmaven.test.failure.ignore=true clean package"
+
+            // To run Maven on a Windows agent, use
+            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            
+            //run tests
+            sh 'mvn test'
+            
+         }
+
+         post {
+            // If Maven was able to run the tests, even if some of the test
+            // failed, record the test results and archive the jar file.
+            success {
+               junit '**/target/surefire-reports/TEST-*.xml'
+               archiveArtifacts 'target/*.jar'
             }
-        }
-
-        stage ('Testing Stage') {
-
-            steps {
-                withMaven(maven : 'maven_3_9_3') {
-                    sh 'mvn test'
-                }
-            }
-        }
-
-
-        stage ('Deployment Stage') {
-            steps {
-                withMaven(maven : 'maven_3_9_3') {
-                    sh 'mvn deploy'
-                }
-            }
-        }
-    }
+         }
+      }
+   }
 }
