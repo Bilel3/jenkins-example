@@ -87,14 +87,14 @@
     <repositories>
         <repository>
          <id>nexus-snapshots</id>
-         <url>http://localhost:8081/#browse/browse:maven-central</url>
+         <url>http://localhost:8081/repository/maven-central/</url>
         </repository>
     </repositories>
 
 <distributionManagement>
    <snapshotRepository>
       <id>nexus-snapshots</id>
-      <url>http://localhost:8081/#browse/browse:maven-central</url>
+      <urlhttp://localhost:8081/repository/maven-central/</url>
    </snapshotRepository>
 </distributionManagement>
 
