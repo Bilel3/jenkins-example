@@ -30,7 +30,7 @@ pipeline {
             success {
                junit '**/target/surefire-reports/TEST-*.xml'
                archiveArtifacts 'target/*.jar'
-               sh 'maven clean deploy -x'
+               sh 'mvn clean deploy -x'
             }
             
          }
