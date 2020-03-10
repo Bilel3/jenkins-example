@@ -72,6 +72,10 @@
       <id>nexus-snapshots</id>
       <url>http://172.17.0.3:8081/repository/maven-snapshots/</url>
    </snapshotRepository>
+         <snapshotRepository>
+      <id>tomcat-local</id>
+      <url>file:///C:/Program%20Files/apache-tomcat-9.0.31/webapps/New/</url>
+   </snapshotRepository>
 </distributionManagement>
 
 </project>
