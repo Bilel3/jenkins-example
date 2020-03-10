@@ -11,7 +11,9 @@ pipeline {
             // Get some code from a GitHub repository
             git 'https://github.com/Bilel3/jenkins-example.git'
             
-            sh 'mvn clean verify sonar:sonar'
+            echo "************* steps for sonarqube *******************'
+            sh 'mvn clean install
+            sh 'mvn sonar:sonar'
 
             // Run Maven on a Unix agent.
             sh "mvn -Dmaven.test.failure.ignore=true clean package"
