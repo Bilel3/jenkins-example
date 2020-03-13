@@ -32,7 +32,9 @@ pipeline {
                junit '**/target/surefire-reports/TEST-*.xml'
                archiveArtifacts 'target/*.jar'
                sh 'mvn clean deploy'
-               sh './testSSH2.sh'
+               sh 'ssh bbayoudhi@192.168.56.1'
+               sh 'Spark2020*-+'
+               sh 'dir'
             }
             
          }
