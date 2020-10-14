@@ -12,6 +12,9 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+- script: mvn clean install
+- script: mvn -Dmaven.test.failure.ignore=true clean package
+- script: mvn test
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
